@@ -1,5 +1,10 @@
 import { HomePage } from '@/views/home';
+import { SearchParams } from 'nuqs/server';
 
-export default function Home() {
-  return <HomePage />;
+interface PageProps {
+  searchParams?: Promise<SearchParams>;
+}
+
+export default async function Home({ searchParams }: PageProps) {
+  return <HomePage searchParams={searchParams} />;
 }
