@@ -1,5 +1,7 @@
 'use server';
 
+import { revalidateTag } from 'next/cache';
+
 export async function deleteUser(id: string): Promise<{ message: string }> {
   try {
     const baseUrl =
@@ -23,8 +25,8 @@ export async function deleteUser(id: string): Promise<{ message: string }> {
       );
     }
 
-    const data = await response.json();
-    return data;
+    revalidateTag('users');
+    return await response.json();
   } catch (error) {
     console.error(error);
     if (error instanceof Error) {
