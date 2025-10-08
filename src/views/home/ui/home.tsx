@@ -1,6 +1,9 @@
 import { searchParamsCache } from '@/app/searchParams';
-import { UsersTable } from '@/entities/user/ui/users-table/users-table';
+import { UsersCreate } from '@/entities/user/ui/users-create';
+import { UsersTableWithSuspense } from '@/entities/user/ui/users-table';
+import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
 import { type SearchParams } from 'nuqs/server';
 
 interface HomePageProps {
@@ -12,7 +15,14 @@ export async function HomePage({ searchParams }: HomePageProps) {
 
   return (
     <Container maxWidth="md">
-      <UsersTable page={page} />
+      <Box
+        component="section"
+        sx={{ display: 'flex', flexDirection: 'column', gap: 2, pt: 2 }}
+      >
+        <Typography variant="h4">Пользователи системы</Typography>
+        <UsersCreate />
+        <UsersTableWithSuspense page={page} />
+      </Box>
     </Container>
   );
 }
