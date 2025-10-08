@@ -1,36 +1,183 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Пояснительная записка к тестовому заданию для Upjet
 
-## Getting Started
+## Обзор проекта
 
-First, run the development server:
+Проект разработан в рамках тестового задания для компании Upjet. Приложение реализует полный CRUD-функционал для работы с пользователями системы, включая создание, редактирование, удаление и просмотр пользователей с пагинацией.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Ссылка на Vercel: https://upjet-test.vercel.app/
+
+## Установка и запуск
+
+Для запуска проекта выполните следующие шаги:
+
+1. Установка зависимостей:
+
+   ```bash
+   bun install
+   ```
+
+2. Запуск приложения:
+   ```bash
+   bun --bun run dev
+   ```
+
+## Технический стек
+
+### Frontend & Framework
+
+- **Next.js 15.5.4**
+- **React 19.1.0**
+- **TypeScript 5**
+- **Turbopack**
+
+### UI & Стилизация
+
+- **Material-UI (MUI) 7.3.4**
+
+### Управление состоянием и формы
+
+- **TanStack React Form 1.23.6**
+- **nuqs 2.7.1**
+- **Zod 4.1.12**
+
+### Инструменты разработки
+
+- **ESLint 9**
+- **Prettier 3.6.2**
+- **Bun**
+
+## Архитектура проекта
+
+Проект следует методологии **Feature-Sliced Design (FSD)**, обеспечивающей чистую архитектуру и высокую масштабируемость.
+
+## Функциональность
+
+### Основные возможности
+
+1. **Просмотр пользователей**
+   - Табличное представление списка пользователей
+   - Отображение основной информации (ID, имя, email, телефон, роль)
+   - Пагинация (10 пользователей на страницу)
+
+2. **Создание пользователей**
+   - Модальное окно с формой создания
+   - Валидация полей (email, телефон, имя, роль)
+   - Обновление списка после создания
+
+3. **Редактирование пользователей**
+   - Модальное окно с предзаполненной формой
+   - Валидация изменений
+   - Обновление данных в реальном времени
+
+4. **Удаление пользователей**
+   - Подтверждение действия через диалог
+   - Безопасное удаление с обновлением списка
+
+5. **Управление ролями**
+   - Три типа ролей: Администратор, Менеджер, Пользователь
+   - Локализованные названия ролей
+
+### Технические особенности
+
+1. **Server-Side Rendering (SSR)**
+   - Первоначальная загрузка на сервере
+   - SEO-оптимизация
+   - Улучшенная производительность
+
+2. **Server Actions**
+   - API операции выполняются на сервере
+   - Автоматическая ревалидация кеша
+   - Типобезопасные операции
+
+## API Endpoints
+
+### GET /api/users
+
+Получение списка пользователей с пагинацией
+
+```typescript
+Query Parameters:
+- page?: number (default: 1)
+
+Response:
+{
+  data: User[],
+  meta: {
+    totalCount: number,
+    totalPages: number,
+    currentPage: number
+  }
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### POST /api/users
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Создание нового пользователя
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```typescript
+Body: {
+  name: string,
+  email: string,
+  phone: string,
+  role: 'admin' | 'manager' | 'user'
+}
 
-## Learn More
+Response: User
+```
 
-To learn more about Next.js, take a look at the following resources:
+### PUT /api/users
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Обновление существующего пользователя
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```typescript
+Body: {
+  id: string,
+  name: string,
+  email: string,
+  phone: string,
+  role: 'admin' | 'manager' | 'user'
+}
 
-## Deploy on Vercel
+Response: User
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### DELETE /api/users
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Удаление пользователя
+
+```typescript
+Query Parameters:
+- id: string
+
+Response: { message: string }
+```
+
+## Модель данных
+
+### User Entity
+
+```typescript
+interface User {
+  id: string; // 6-значный идентификатор
+  name: string; // Имя пользователя (2-100 символов)
+  email: string; // Email адрес
+  phone: string; // Номер телефона (+79xxxxxxxxx)
+  role: UserRole; // Роль пользователя
+}
+
+enum UserRole {
+  Admin = 'admin',
+  Manager = 'manager',
+  User = 'user',
+}
+```
+
+### Валидация
+
+Используется библиотека **Zod** для валидации данных:
+
+- **Email**: валидный email формат
+- **Телефон**: регулярное выражение `/^\\+?\\d{10,15}$/`
+- **Имя**: от 2 до 100 символов
+- **ID**: 6-значное число
+- **Роль**: один из предопределенных вариантов
