@@ -1,12 +1,11 @@
 'use server';
 
+import { BASE_URL } from '@/shared/constants';
 import { revalidateTag } from 'next/cache';
 
 export async function deleteUser(id: string): Promise<{ message: string }> {
   try {
-    const baseUrl =
-      process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000';
-    const apiUrl = `${baseUrl}/api/users?id=${id}`;
+    const apiUrl = `${BASE_URL}/api/users?id=${id}`;
 
     const response = await fetch(apiUrl, {
       method: 'DELETE',

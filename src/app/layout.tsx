@@ -1,4 +1,4 @@
-import theme from '@/theme/theme';
+import { theme } from '@/shared/ui/theme';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import { ThemeProvider } from '@mui/material/styles';
 import type { Metadata, Viewport } from 'next';

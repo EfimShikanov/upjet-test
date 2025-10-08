@@ -1,4 +1,6 @@
-import Paper from '@mui/material/Paper';
+import { getUsers, type PaginationMeta } from '@/entities/user/api/get-users';
+import { User, USER_ROLE_NAMES } from '@/entities/user/model/';
+import { UsersTableActions } from '@/features/user-management/ui/users-table-actions';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -6,9 +8,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { UsersTablePagination } from './users-table-pagination';
-import { getUsers, type PaginationMeta } from '@/entities/user/api/get-users';
-import { User, USER_ROLE_NAMES } from '../../model';
-import { UsersTableActions } from './users-table-actions';
 
 interface UsersTableProps {
   page: number;
@@ -32,7 +31,7 @@ export async function UsersTable({ page }: UsersTableProps) {
 
   return (
     <>
-      <TableContainer component={Paper} sx={{ maxHeight: '78svh' }}>
+      <TableContainer>
         <Table>
           <TableHead>
             <TableRow>

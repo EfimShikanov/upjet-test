@@ -1,5 +1,6 @@
 'use server';
 
+import { BASE_URL } from '@/shared/constants';
 import { User } from '../model';
 
 export interface PaginationMeta {
@@ -20,9 +21,7 @@ interface GetUsersParams {
 export async function getUsers({
   page = 1,
 }: GetUsersParams = {}): Promise<GetUsersResponse> {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000';
-  const apiUrl = `${baseUrl}/api/users?page=${page}`;
+  const apiUrl = `${BASE_URL}/api/users?page=${page}`;
 
   try {
     const response = await fetch(apiUrl, {

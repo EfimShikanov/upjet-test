@@ -1,10 +1,8 @@
 'use client';
 
-import React, { useTransition } from 'react';
-import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
-import TableRow from '@mui/material/TableRow';
 import { useQueryState } from 'nuqs';
+import React, { useTransition } from 'react';
 
 interface UsersTablePaginationProps {
   currentPage: number;

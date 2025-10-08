@@ -150,6 +150,7 @@ export async function DELETE(request: NextRequest) {
     response.headers.set('Content-Type', 'application/json; charset=utf-8');
     return response;
   } catch (error) {
+    console.error('Error in DELETE handler:', error);
     const response = NextResponse.json(
       { message: 'Ошибка при удалении пользователя' },
       { status: 500 },

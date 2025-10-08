@@ -1,14 +1,15 @@
 'use client';
 
+import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
 import { useState } from 'react';
-import { UsersDelete } from '../users-delete';
-import { UsersUpdate } from '../users-update';
-import { User } from '../../model';
+
+import { User } from '../../../entities/user/model';
+import { UsersDelete } from './users-delete';
+import { UsersUpdate } from './users-update';
 
 interface UsersTableActionsProps {
   user: User;
@@ -29,6 +30,7 @@ export function UsersTableActions({ user }: UsersTableActionsProps) {
 
   const handleDeleteSuccess = (message: string) => {
     setAlert({ type: 'success', message });
+    setDialog(undefined);
   };
 
   const handleDeleteError = (message: string) => {
@@ -37,6 +39,7 @@ export function UsersTableActions({ user }: UsersTableActionsProps) {
 
   const handleUpdateSuccess = () => {
     setAlert({ type: 'success', message: 'Пользователь успешно обновлен' });
+    setDialog(undefined);
   };
 
   const handleUpdateError = (message: string) => {

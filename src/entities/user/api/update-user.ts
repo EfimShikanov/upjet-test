@@ -3,6 +3,7 @@
 import { revalidateTag } from 'next/cache';
 import { User } from '../model';
 import { CreateUserValidationSchema } from '../model/user.schema';
+import { BASE_URL } from '@/shared/constants';
 
 type UpdateUserRequest = CreateUserValidationSchema & {
   id: string;
@@ -10,9 +11,7 @@ type UpdateUserRequest = CreateUserValidationSchema & {
 
 export async function updateUser(userData: UpdateUserRequest): Promise<User> {
   try {
-    const baseUrl =
-      process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:3000';
-    const apiUrl = `${baseUrl}/api/users`;
+    const apiUrl = `${BASE_URL}/api/users`;
     const response = await fetch(apiUrl, {
       method: 'PUT',
       headers: {
