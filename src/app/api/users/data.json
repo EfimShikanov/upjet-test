@@ -1,0 +1,326 @@
+{
+  "data": [
+    {
+      "id": "100000",
+      "name": "Иван Иванов",
+      "email": "ivan.ivanov@example.com",
+      "phone": "+79261234567",
+      "role": "admin"
+    },
+    {
+      "id": "100001",
+      "name": "Мария Петрова",
+      "email": "maria.petrova@example.com",
+      "phone": "+79039876543",
+      "role": "manager"
+    },
+    {
+      "id": "100002",
+      "name": "Алексей Смирнов",
+      "email": "alexey.smirnov@example.com",
+      "phone": "+79051234567",
+      "role": "user"
+    },
+    {
+      "id": "100003",
+      "name": "Елена Васильева",
+      "email": "elena.vasileva@example.com",
+      "phone": "+79167890123",
+      "role": "manager"
+    },
+    {
+      "id": "100004",
+      "name": "Дмитрий Козлов",
+      "email": "dmitriy.kozlov@example.com",
+      "phone": "+79234567890",
+      "role": "user"
+    },
+    {
+      "id": "100005",
+      "name": "Анна Новикова",
+      "email": "anna.novikova@example.com",
+      "phone": "+79876543210",
+      "role": "admin"
+    },
+    {
+      "id": "100006",
+      "name": "Сергей Волков",
+      "email": "sergey.volkov@example.com",
+      "phone": "+79123456789",
+      "role": "user"
+    },
+    {
+      "id": "100007",
+      "name": "Ольга Лебедева",
+      "email": "olga.lebedeva@example.com",
+      "phone": "+79345678901",
+      "role": "manager"
+    },
+    {
+      "id": "100008",
+      "name": "Владимир Соколов",
+      "email": "vladimir.sokolov@example.com",
+      "phone": "+79456789012",
+      "role": "user"
+    },
+    {
+      "id": "100009",
+      "name": "Татьяна Морозова",
+      "email": "tatyana.morozova@example.com",
+      "phone": "+79567890123",
+      "role": "manager"
+    },
+    {
+      "id": "100010",
+      "name": "Андрей Павлов",
+      "email": "andrey.pavlov@example.com",
+      "phone": "+79678901234",
+      "role": "user"
+    },
+    {
+      "id": "100011",
+      "name": "Наталья Федорова",
+      "email": "natalya.fedorova@example.com",
+      "phone": "+79789012345",
+      "role": "admin"
+    },
+    {
+      "id": "100012",
+      "name": "Михаил Орлов",
+      "email": "mikhail.orlov@example.com",
+      "phone": "+79890123456",
+      "role": "user"
+    },
+    {
+      "id": "100013",
+      "name": "Юлия Зайцева",
+      "email": "yuliya.zaitseva@example.com",
+      "phone": "+79901234567",
+      "role": "manager"
+    },
+    {
+      "id": "100014",
+      "name": "Роман Белов",
+      "email": "roman.belov@example.com",
+      "phone": "+79012345678",
+      "role": "user"
+    },
+    {
+      "id": "100015",
+      "name": "Екатерина Попова",
+      "email": "ekaterina.popova@example.com",
+      "phone": "+79123450987",
+      "role": "manager"
+    },
+    {
+      "id": "100016",
+      "name": "Николай Крылов",
+      "email": "nikolay.krylov@example.com",
+      "phone": "+79234561098",
+      "role": "user"
+    },
+    {
+      "id": "100017",
+      "name": "Светлана Жукова",
+      "email": "svetlana.zhukova@example.com",
+      "phone": "+79345672109",
+      "role": "admin"
+    },
+    {
+      "id": "100018",
+      "name": "Константин Макаров",
+      "email": "konstantin.makarov@example.com",
+      "phone": "+79456783210",
+      "role": "user"
+    },
+    {
+      "id": "100019",
+      "name": "Виктория Степанова",
+      "email": "viktoriya.stepanova@example.com",
+      "phone": "+79567894321",
+      "role": "manager"
+    },
+    {
+      "id": "100020",
+      "name": "Игорь Григорьев",
+      "email": "igor.grigoriev@example.com",
+      "phone": "+79678905432",
+      "role": "user"
+    },
+    {
+      "id": "100021",
+      "name": "Людмила Романова",
+      "email": "lyudmila.romanova@example.com",
+      "phone": "+79789016543",
+      "role": "manager"
+    },
+    {
+      "id": "100022",
+      "name": "Александр Куznetsov",
+      "email": "aleksandr.kuznetsov@example.com",
+      "phone": "+79890127654",
+      "role": "admin"
+    },
+    {
+      "id": "100023",
+      "name": "Валентина Богданова",
+      "email": "valentina.bogdanova@example.com",
+      "phone": "+79901238765",
+      "role": "user"
+    },
+    {
+      "id": "100024",
+      "name": "Евгений Медведев",
+      "email": "evgeniy.medvedev@example.com",
+      "phone": "+79012349876",
+      "role": "manager"
+    },
+    {
+      "id": "100025",
+      "name": "Галина Тихонова",
+      "email": "galina.tikhonova@example.com",
+      "phone": "+79123450765",
+      "role": "user"
+    },
+    {
+      "id": "100026",
+      "name": "Павел Зуев",
+      "email": "pavel.zuev@example.com",
+      "phone": "+79234561876",
+      "role": "manager"
+    },
+    {
+      "id": "100027",
+      "name": "Ирина Кузьмина",
+      "email": "irina.kuzmina@example.com",
+      "phone": "+79345672987",
+      "role": "admin"
+    },
+    {
+      "id": "100028",
+      "name": "Артем Баранов",
+      "email": "artem.baranov@example.com",
+      "phone": "+79456784098",
+      "role": "user"
+    },
+    {
+      "id": "100029",
+      "name": "Любовь Денисова",
+      "email": "lyubov.denisova@example.com",
+      "phone": "+79567895109",
+      "role": "manager"
+    },
+    {
+      "id": "100030",
+      "name": "Денис Фролов",
+      "email": "denis.frolov@example.com",
+      "phone": "+79678906210",
+      "role": "user"
+    },
+    {
+      "id": "100031",
+      "name": "Вера Воронова",
+      "email": "vera.voronova@example.com",
+      "phone": "+79789017321",
+      "role": "manager"
+    },
+    {
+      "id": "100032",
+      "name": "Максим Королев",
+      "email": "maksim.korolev@example.com",
+      "phone": "+79890128432",
+      "role": "admin"
+    },
+    {
+      "id": "100033",
+      "name": "Лариса Антонова",
+      "email": "larisa.antonova@example.com",
+      "phone": "+79901239543",
+      "role": "user"
+    },
+    {
+      "id": "100034",
+      "name": "Виталий Гусев",
+      "email": "vitaliy.gusev@example.com",
+      "phone": "+79012340654",
+      "role": "manager"
+    },
+    {
+      "id": "100035",
+      "name": "Надежда Борисова",
+      "email": "nadezhda.borisova@example.com",
+      "phone": "+79123451765",
+      "role": "user"
+    },
+    {
+      "id": "100036",
+      "name": "Кирилл Дмитриев",
+      "email": "kirill.dmitriev@example.com",
+      "phone": "+79234562876",
+      "role": "manager"
+    },
+    {
+      "id": "100037",
+      "name": "Тамара Захарова",
+      "email": "tamara.zakharova@example.com",
+      "phone": "+79345673987",
+      "role": "admin"
+    },
+    {
+      "id": "100038",
+      "name": "Станислав Рыбаков",
+      "email": "stanislav.rybakov@example.com",
+      "phone": "+79456785098",
+      "role": "user"
+    },
+    {
+      "id": "100039",
+      "name": "Алла Семенова",
+      "email": "alla.semenova@example.com",
+      "phone": "+79567896109",
+      "role": "manager"
+    },
+    {
+      "id": "100040",
+      "name": "Георгий Львов",
+      "email": "georgiy.lvov@example.com",
+      "phone": "+79678907210",
+      "role": "user"
+    },
+    {
+      "id": "100041",
+      "name": "Раиса Никитина",
+      "email": "raisa.nikitina@example.com",
+      "phone": "+79789018321",
+      "role": "manager"
+    },
+    {
+      "id": "100042",
+      "name": "Леонид Трофимов",
+      "email": "leonid.trofimov@example.com",
+      "phone": "+79890129432",
+      "role": "admin"
+    },
+    {
+      "id": "100043",
+      "name": "Маргарита Филиппова",
+      "email": "margarita.filippova@example.com",
+      "phone": "+79901230543",
+      "role": "user"
+    },
+    {
+      "id": "100044",
+      "name": "Валерий Голубев",
+      "email": "valeriy.golubev@example.com",
+      "phone": "+79012341654",
+      "role": "manager"
+    },
+    {
+      "id": "100045",
+      "name": "Зинаида Лазарева",
+      "email": "zinaida.lazareva@example.com",
+      "phone": "+79123452765",
+      "role": "user"
+    }
+  ]
+}

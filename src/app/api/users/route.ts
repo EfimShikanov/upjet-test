@@ -1,90 +1,13 @@
-import { User, UserRole } from '@/entities/user';
+import { User } from '@/entities/user';
 import { NextResponse, type NextRequest } from 'next/server';
 import { z } from 'zod';
 import { CreateUserSchema } from '@/entities/user/model/user.schema';
+import data from './data.json';
 
-const users: User[] = [
-  {
-    id: '100000',
-    name: 'Иван Иванов',
-    email: 'ivan@example.com',
-    phone: '+79261234567',
-    role: UserRole.Admin,
-  },
-  {
-    id: '100001',
-    name: 'Мария Петрова',
-    email: 'maria@example.com',
-    phone: '+79039876543',
-    role: UserRole.Manager,
-  },
-  {
-    id: '100002',
-    name: 'Мария Петрова',
-    email: 'maria@example.com',
-    phone: '+79039876543',
-    role: UserRole.Manager,
-  },
-  {
-    id: '100003',
-    name: 'Мария Петрова',
-    email: 'maria@example.com',
-    phone: '+79039876543',
-    role: UserRole.Manager,
-  },
-  {
-    id: '100004',
-    name: 'Мария Петрова',
-    email: 'maria@example.com',
-    phone: '+79039876543',
-    role: UserRole.Manager,
-  },
-  {
-    id: '100005',
-    name: 'Иван Иванов',
-    email: 'ivan@example.com',
-    phone: '+79261234567',
-    role: UserRole.Admin,
-  },
-  {
-    id: '100006',
-    name: 'Мария Петрова',
-    email: 'maria@example.com',
-    phone: '+79039876543',
-    role: UserRole.Manager,
-  },
-  {
-    id: '100007',
-    name: 'Мария Петрова',
-    email: 'maria@example.com',
-    phone: '+79039876543',
-    role: UserRole.Manager,
-  },
-  {
-    id: '100008',
-    name: 'Мария Петрова',
-    email: 'maria@example.com',
-    phone: '+79039876543',
-    role: UserRole.Manager,
-  },
-  {
-    id: '100009',
-    name: 'Мария Петрова',
-    email: 'maria@example.com',
-    phone: '+79039876543',
-    role: UserRole.Manager,
-  },
-  {
-    id: '100010',
-    name: 'Мария Петрова',
-    email: 'maria@example.com',
-    phone: '+79039876543',
-    role: UserRole.Manager,
-  },
-];
+const users: User[] = data.data as User[];
 
 export async function GET(request: NextRequest) {
-  await new Promise((resolve) => setTimeout(resolve, 500)); // Имитация задержки сети
+  await new Promise((resolve) => setTimeout(resolve, 500));
 
   const url = new URL(request.url);
   const page = Number(url.searchParams.get('page')) || 1;
@@ -123,9 +46,9 @@ export async function POST(request: NextRequest) {
       role: validatedBody.role,
     };
 
-    users.push(newUser);
+    users.unshift(newUser);
 
-    return NextResponse.json(newUser, { status: 201 }); // 201 Created
+    return NextResponse.json(newUser, { status: 201 });
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
