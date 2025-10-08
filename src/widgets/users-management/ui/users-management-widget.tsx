@@ -1,4 +1,4 @@
-import { UsersCreate } from '@/features/user-management/ui';
+import { CreateUser } from '@/features/create-user';
 import { ErrorBoundary } from '@/shared/lib/error-boundary';
 import { UsersTableWithSuspense } from '@/widgets/users-table/ui';
 import Box from '@mui/material/Box';
@@ -42,7 +42,7 @@ export function UsersManagementWidget({ page }: UsersManagementWidgetProps) {
               новых учетных записей, редактирование существующих пользователей и
               управление правами доступа.
             </Typography>
-            <UsersCreate />
+            <CreateUser />
           </Box>
         </Paper>
 
