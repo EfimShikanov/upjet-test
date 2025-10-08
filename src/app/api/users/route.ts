@@ -1,7 +1,7 @@
 import { User } from '@/entities/user';
+import { CreateUserSchema, UpdateUserSchema } from '@/entities/user/model';
 import { NextResponse, type NextRequest } from 'next/server';
 import { z } from 'zod';
-import { CreateUserSchema } from '@/entities/user/model/user.schema';
 import data from './data.json';
 
 const users: User[] = data.data as User[];
@@ -48,7 +48,7 @@ export async function POST(request: NextRequest) {
 
     users.unshift(newUser);
 
-    return NextResponse.json(newUser, { status: 404 });
+    return NextResponse.json(newUser, { status: 201 });
   } catch (error) {
     if (error instanceof z.ZodError) {
       const response = NextResponse.json(
@@ -60,6 +60,53 @@ export async function POST(request: NextRequest) {
     }
     const response = NextResponse.json(
       { message: 'Ошибка при обработке запроса' },
+      { status: 500 },
+    );
+    response.headers.set('Content-Type', 'application/json; charset=utf-8');
+    return response;
+  }
+}
+
+export async function PUT(request: NextRequest) {
+  try {
+    const body = await request.json();
+
+    const validatedBody = UpdateUserSchema.parse(body);
+    const userId = validatedBody.id;
+    console.log(validatedBody, userId);
+    const userIndex = users.findIndex((user) => user.id === userId);
+    console.log(userIndex);
+    if (userIndex === -1) {
+      const response = NextResponse.json(
+        { message: 'Пользователь не найден' },
+        { status: 404 },
+      );
+      response.headers.set('Content-Type', 'application/json; charset=utf-8');
+      return response;
+    }
+
+    const updatedUser: User = {
+      id: validatedBody.id,
+      name: validatedBody.name,
+      email: validatedBody.email,
+      phone: validatedBody.phone,
+      role: validatedBody.role,
+    };
+
+    users[userIndex] = updatedUser;
+
+    return NextResponse.json(updatedUser, { status: 200 });
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      const response = NextResponse.json(
+        { message: 'Ошибка валидации', errors: error.flatten() },
+        { status: 400 },
+      );
+      response.headers.set('Content-Type', 'application/json; charset=utf-8');
+      return response;
+    }
+    const response = NextResponse.json(
+      { message: 'Ошибка при обновлении пользователя' },
       { status: 500 },
     );
     response.headers.set('Content-Type', 'application/json; charset=utf-8');

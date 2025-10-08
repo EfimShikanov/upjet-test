@@ -7,19 +7,21 @@ import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 import { useState } from 'react';
 import { UsersDelete } from '../users-delete';
+import { UsersUpdate } from '../users-update';
+import { User } from '../../model';
 
 interface UsersTableActionsProps {
-  userId: string;
+  user: User;
 }
 
-type DialogType = 'edit' | 'delete';
+type DialogType = 'update' | 'delete';
 
 interface AlertState {
   type: 'success' | 'error';
   message: string;
 }
 
-export function UsersTableActions({ userId }: UsersTableActionsProps) {
+export function UsersTableActions({ user }: UsersTableActionsProps) {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const [dialog, setDialog] = useState<DialogType>();
   const [alert, setAlert] = useState<AlertState | null>(null);
@@ -30,6 +32,14 @@ export function UsersTableActions({ userId }: UsersTableActionsProps) {
   };
 
   const handleDeleteError = (message: string) => {
+    setAlert({ type: 'error', message });
+  };
+
+  const handleUpdateSuccess = () => {
+    setAlert({ type: 'success', message: 'Пользователь успешно обновлен' });
+  };
+
+  const handleUpdateError = (message: string) => {
     setAlert({ type: 'error', message });
   };
 
@@ -63,7 +73,13 @@ export function UsersTableActions({ userId }: UsersTableActionsProps) {
         }}
         onClose={() => setAnchorEl(null)}
       >
-        <MenuItem key={'edit'} onClick={() => setAnchorEl(null)}>
+        <MenuItem
+          key={'edit'}
+          onClick={() => {
+            setAnchorEl(null);
+            setDialog('update');
+          }}
+        >
           Редактировать
         </MenuItem>
         <MenuItem
@@ -78,10 +94,17 @@ export function UsersTableActions({ userId }: UsersTableActionsProps) {
       </Menu>
       <UsersDelete
         open={dialog === 'delete'}
-        userId={userId}
+        userId={user.id}
         onClose={() => setDialog(undefined)}
         onSuccess={handleDeleteSuccess}
         onError={handleDeleteError}
+      />
+      <UsersUpdate
+        open={dialog === 'update'}
+        user={user}
+        onClose={() => setDialog(undefined)}
+        onSuccess={handleUpdateSuccess}
+        onError={handleUpdateError}
       />
       <Snackbar
         open={alert?.type === 'success'}

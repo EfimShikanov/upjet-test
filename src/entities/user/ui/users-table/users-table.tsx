@@ -54,7 +54,7 @@ export async function UsersTable({ page }: UsersTableProps) {
                   <TableCell>{user.phone}</TableCell>
                   <TableCell>{USER_ROLE_NAMES[user.role]}</TableCell>
                   <TableCell>
-                    <UsersTableActions userId={user.id} />
+                    <UsersTableActions user={user} />
                   </TableCell>
                 </TableRow>
               ))

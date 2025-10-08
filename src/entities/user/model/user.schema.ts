@@ -13,4 +13,9 @@ export const CreateUserSchema = z.object({
   role: z.enum(UserRole), // Использование z.nativeEnum для TypeScript enum
 });
 
+export const UpdateUserSchema = CreateUserSchema.extend({
+  id: z.string().regex(/^\d{6}$/, 'Некорректный ID пользователя'),
+});
+
 export type CreateUserValidationSchema = z.infer<typeof CreateUserSchema>;
+export type UpdateUserValidationSchema = z.infer<typeof UpdateUserSchema>;
