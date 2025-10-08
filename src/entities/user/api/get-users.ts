@@ -28,6 +28,9 @@ export async function getUsers({
     const response = await fetch(apiUrl, {
       next: { tags: ['users'] },
       cache: 'force-cache',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
 
     if (!response.ok) {
