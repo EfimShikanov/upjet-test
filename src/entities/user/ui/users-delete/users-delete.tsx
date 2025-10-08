@@ -10,8 +10,8 @@ import { deleteUser } from '../../api';
 interface UsersDeleteProps {
   userId: string;
   onClose: () => void;
-  onSuccess?: (message: string) => void;
-  onError?: (message: string) => void;
+  onSuccess: (message: string) => void;
+  onError: (message: string) => void;
   open: boolean;
 }
 
@@ -27,16 +27,14 @@ export function UsersDelete({
     startDeletingTransition(async () => {
       try {
         const result = await deleteUser(userId);
-        console.log(result);
-        onSuccess?.(result.message);
+        onSuccess(result.message);
         onClose();
       } catch (error) {
         const errorMessage =
           error instanceof Error
             ? error.message
             : 'Ошибка при удалении пользователя';
-        onError?.(errorMessage);
-        console.log(error);
+        onError(errorMessage);
       }
     });
   };
