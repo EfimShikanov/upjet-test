@@ -9,7 +9,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useTransition } from 'react';
 
-interface UsersDeleteProps {
+interface DeleteUserProps {
   userId: string;
   onClose: () => void;
   onSuccess: (message: string) => void;
@@ -17,14 +17,15 @@ interface UsersDeleteProps {
   open: boolean;
 }
 
-export function UsersDelete({
+export function DeleteUser({
   userId,
   onClose,
   onSuccess,
   onError,
   open,
-}: UsersDeleteProps) {
+}: DeleteUserProps) {
   const [isDeleting, startDeletingTransition] = useTransition();
+
   const handleDelete = async () => {
     startDeletingTransition(async () => {
       try {
@@ -42,29 +43,28 @@ export function UsersDelete({
   };
 
   return (
-    <>
-      <Dialog open={open} onClose={onClose}>
-        <DialogTitle>Удаление пользователя</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Вы собираетесь удалить пользователя с ID {userId}. Отменить действие
-            будет невозможно.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={onClose} disabled={isDeleting}>
-            Отмена
-          </Button>
-          <Button
-            onClick={handleDelete}
-            autoFocus
-            disabled={isDeleting}
-            color="error"
-          >
-            {isDeleting ? 'Удаление...' : 'Удалить'}
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </>
+    <Dialog open={open} onClose={onClose}>
+      <DialogTitle>Удаление пользователя</DialogTitle>
+      <DialogContent>
+        <DialogContentText id="alert-dialog-description">
+          Вы собираетесь удалить пользователя с ID {userId}. Отменить действие
+          будет невозможно.
+        </DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={onClose} disabled={isDeleting}>
+          Отмена
+        </Button>
+        <Button
+          onClick={handleDelete}
+          autoFocus
+          disabled={isDeleting}
+          loading={isDeleting}
+          color="error"
+        >
+          Удалить
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
 }

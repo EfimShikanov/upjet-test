@@ -10,7 +10,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useTransition } from 'react';
 
-interface UsersUpdateProps {
+interface UpdateUserProps {
   user: User;
   onSuccess: () => void;
   onError: (error: string) => void;
@@ -18,13 +18,13 @@ interface UsersUpdateProps {
   onClose: () => void;
 }
 
-export function UsersUpdate({
+export function UpdateUser({
   user,
   onSuccess,
   onError,
   open,
   onClose,
-}: UsersUpdateProps) {
+}: UpdateUserProps) {
   const [isSubmitting, startSubmittingTransition] = useTransition();
 
   const onSubmit = async (values: User) => {
@@ -61,9 +61,9 @@ export function UsersUpdate({
           type="submit"
           variant="contained"
           form="update-user"
-          loading={isSubmitting}
+          disabled={isSubmitting}
         >
-          Сохранить
+          {isSubmitting ? 'Сохранение...' : 'Сохранить'}
         </Button>
       </DialogActions>
     </Dialog>

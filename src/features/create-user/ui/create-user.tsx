@@ -2,6 +2,7 @@
 
 import { createUser } from '@/entities/user/api/create-user';
 import { type CreateUserValidationSchema } from '@/entities/user/model';
+import { Alert, AlertObject } from '@/shared/ui';
 import { UserForm } from '@/shared/ui/user-form';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -10,8 +11,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import { useState, useTransition } from 'react';
 
-export function UsersCreate() {
+export function CreateUser() {
   const [open, setOpen] = useState(false);
+  const [alert, setAlert] = useState<AlertObject | null>(null);
   const [isSubmitting, startSubmittingTransition] = useTransition();
 
   const handleClickOpen = () => {
@@ -26,10 +28,22 @@ export function UsersCreate() {
 
   const onSuccess = () => {
     setOpen(false);
+    setAlert({
+      severity: 'success',
+      message: 'Пользователь успешно создан',
+    });
   };
 
   const onError = (error: string) => {
     console.error('Ошибка при отправке формы:', error);
+    setAlert({
+      severity: 'error',
+      message: error,
+    });
+  };
+
+  const closeAlert = () => {
+    setAlert(null);
   };
 
   return (
@@ -42,7 +56,6 @@ export function UsersCreate() {
       >
         Создать пользователя
       </Button>
-
       <Dialog
         open={open}
         onClose={() => setOpen(false)}
@@ -50,7 +63,6 @@ export function UsersCreate() {
         fullWidth
       >
         <DialogTitle>Создание нового пользователя</DialogTitle>
-
         <DialogContent>
           <UserForm
             mode="create"
@@ -60,7 +72,6 @@ export function UsersCreate() {
             onSuccess={onSuccess}
           />
         </DialogContent>
-
         <DialogActions>
           <Button
             onClick={() => setOpen(false)}
@@ -74,12 +85,16 @@ export function UsersCreate() {
             type="submit"
             variant="contained"
             form="create-user"
+            disabled={isSubmitting}
             loading={isSubmitting}
           >
             Создать
           </Button>
         </DialogActions>
       </Dialog>
+      <Alert severity={alert?.severity} open={!!alert} onClose={closeAlert}>
+        {alert?.message}
+      </Alert>
     </>
   );
 }
