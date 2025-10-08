@@ -48,18 +48,22 @@ export async function POST(request: NextRequest) {
 
     users.unshift(newUser);
 
-    return NextResponse.json(newUser, { status: 201 });
+    return NextResponse.json(newUser, { status: 404 });
   } catch (error) {
     if (error instanceof z.ZodError) {
-      return NextResponse.json(
+      const response = NextResponse.json(
         { message: 'Ошибка валидации', errors: error.flatten() },
         { status: 400 },
       );
+      response.headers.set('Content-Type', 'application/json; charset=utf-8');
+      return response;
     }
-    return NextResponse.json(
+    const response = NextResponse.json(
       { message: 'Ошибка при обработке запроса' },
       { status: 500 },
     );
+    response.headers.set('Content-Type', 'application/json; charset=utf-8');
+    return response;
   }
 }
 
@@ -68,31 +72,42 @@ export async function DELETE(request: NextRequest) {
     const userId = request.nextUrl.searchParams.get('id');
 
     if (!userId) {
-      return NextResponse.json(
-        { message: 'ID пользователя не указан' },
-        { status: 400 },
+      const response = NextResponse.json(
+        { message: 'ID не указан' },
+        {
+          status: 400,
+          headers: { 'Content-Type': 'application/json; charset=utf-8' },
+        },
       );
+
+      return response;
     }
 
     const userIndex = users.findIndex((user) => user.id === userId);
 
     if (userIndex === -1) {
-      return NextResponse.json(
+      const response = NextResponse.json(
         { message: 'Пользователь не найден' },
         { status: 404 },
       );
+      response.headers.set('Content-Type', 'application/json; charset=utf-8');
+      return response;
     }
 
     users.splice(userIndex, 1);
 
-    return NextResponse.json(
+    const response = NextResponse.json(
       { message: 'Пользователь успешно удален' },
       { status: 200 },
     );
+    response.headers.set('Content-Type', 'application/json; charset=utf-8');
+    return response;
   } catch (error) {
-    return NextResponse.json(
-      { message: 'Ошибка при обработке запроса' },
+    const response = NextResponse.json(
+      { message: 'Ошибка при удалении пользователя' },
       { status: 500 },
     );
+    response.headers.set('Content-Type', 'application/json; charset=utf-8');
+    return response;
   }
 }

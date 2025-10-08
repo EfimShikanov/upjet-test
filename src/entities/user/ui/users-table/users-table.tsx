@@ -32,7 +32,7 @@ export async function UsersTable({ page }: UsersTableProps) {
 
   return (
     <>
-      <TableContainer component={Paper} sx={{ maxHeight: '80svh' }}>
+      <TableContainer component={Paper} sx={{ maxHeight: '78svh' }}>
         <Table>
           <TableHead>
             <TableRow>
@@ -54,7 +54,7 @@ export async function UsersTable({ page }: UsersTableProps) {
                   <TableCell>{user.phone}</TableCell>
                   <TableCell>{USER_ROLE_NAMES[user.role]}</TableCell>
                   <TableCell>
-                    <UsersTableActions />
+                    <UsersTableActions userId={user.id} />
                   </TableCell>
                 </TableRow>
               ))
