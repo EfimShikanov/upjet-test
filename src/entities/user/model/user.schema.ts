@@ -2,7 +2,7 @@ import { z } from 'zod';
 import { UserRole } from './user.types';
 
 export const CreateUserSchema = z.object({
-  email: z.string().email('Невалидный формат email'),
+  email: z.email('Невалидный формат email'),
   phone: z
     .string()
     .regex(/^\+?\d{10,15}$/, 'Невалидный формат номера телефона'),
