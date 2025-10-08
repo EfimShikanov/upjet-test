@@ -1,6 +1,6 @@
 import { getUsers, type PaginationMeta } from '@/entities/user/api/get-users';
 import { User, USER_ROLE_NAMES } from '@/entities/user/model/';
-import { UsersTableActions } from '@/features/user-management/ui/users-table-actions';
+import { UsersTableActions } from './users-table-actions';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
