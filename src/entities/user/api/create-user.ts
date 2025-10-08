@@ -17,6 +17,7 @@ export async function createUser(userData: CreateUserRequest): Promise<User> {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(userData),
+      cache: 'no-store',
     });
 
     if (!response.ok) {
